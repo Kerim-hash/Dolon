@@ -1,48 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import * as yup from "yup";
 import Image from "next/image";
 import { ArrowRight, laptop } from "../assets/index";
 import Select, { components } from "react-select";
+import InputMask from "react-input-mask";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Multiselect from "@/components/MultiSelect";
+import { customStyles } from "@/utils/custumStyles";
+import { ToastContainer, toast } from "react-toastify";
+import emailjs from "@emailjs/browser";
+// validation
+const Form = yup
+  .object({
+    fullName: yup.string().required("Enter your name"),
+    position: yup.string().required("Enter your position"),
+    phone: yup.string().trim().required("Enter your phone"),
+    companyName: yup.string().trim().required("Enter your company name"),
+    email: yup
+      .string()
+      .email("email must be a valid email")
+      .required("Enter your email"),
+  })
+  .required();
 
 const CustomInput = (props) => {
   const { maxLength } = props.selectProps;
   const inputProps = { ...props, maxLength };
 
   return <components.Input {...inputProps} />;
-};
-
-const customStyles = {
-  control: (base, state) => ({
-    ...base,
-    background: "transparent",
-    borderRadius: state.isFocused ? 6 : 6,
-    padding: "4px 8px",
-    borderColor: state.isFocused ? "#7aa7ff" : "#DDDDDF",
-
-    boxShadow: state.isFocused ? null : null,
-    color: "#fff",
-  }),
-  menu: (base) => ({
-    ...base,
-    borderRadius: 0,
-    marginTop: 0,
-    background: "#171717",
-    color: "#fff",
-  }),
-  option: (styles, { isFocused, isSelected }) => ({
-    ...styles,
-    background: isFocused ? "#313132" : isSelected ? "#5a5a5c" : undefined,
-    zIndex: 1,
-  }),
-  menuList: (base) => ({
-    ...base,
-    padding: 0,
-    background: "#171717",
-    borderRadius: 8,
-  }),
-  singleValue: (provided, { data }) => ({
-    ...provided,
-    color: "white",
-  }),
 };
 
 const Contact = () => {
@@ -67,9 +53,9 @@ const Contact = () => {
     { label: "Полевой геолог", value: 4 },
     { label: "Назад", value: 5 },
   ];
-
-  const optionsС = countries.map((country) => ({
-    value: country.code,
+console.log(countries)
+  const optionsNumber = countries.map((country) => ({
+    value: country.idd.root,
     label: (
       <div className="flex items-center">
         <Image
@@ -85,103 +71,137 @@ const Contact = () => {
       </div>
     ),
   }));
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = useForm();
 
+  const form = useRef();
+  const sendEmail = () => {
+    toast("sended!");
+    emailjs
+      .sendForm(
+        "service_ksubelj",
+        "template_e6den2k",
+        form.current,
+        "yGmJuFwDQcKyEtlM7"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          console.log("message sent");
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  };
+  console.log(watch());
   return (
     <div id={"Contacts"} className="container pt-[180px] pb-[180px]">
-      <div className="flex flex-col w-full ">
-        <div className="main py-[200px] max-[1440px]:py-[120px] px-[80px] w-full flex max-[1200px]:flex-col max-[1200px]:items-center justify-between bg-[#171717] rounded-t-lg max-[600px]:px-[16px]">
-          <Image src={laptop} alt="laptop" width={850} height={350} className="max-[1440px]:max-w-[450px] max-[1440px]:max-h-[350px]"  />
-          <div className="info ">
+      <form
+        ref={form}
+        className="flex flex-col w-full "
+        onSubmit={handleSubmit(sendEmail)}
+      >
+        <div className="main py-[200px] max-[1440px]:py-[120px] px-[80px] w-full flex max-[1200px]:flex-col max-[1200px]:items-center justify-between bg-[#171717] rounded-t-lg max-[600px]:px-[16px] max-[600px]:py-[40px]">
+          <Image
+            src={laptop}
+            alt="laptop"
+            width={850}
+            height={350}
+            className="max-[1440px]:max-w-[450px] max-[1440px]:max-h-[350px] max-[600px]:max-w-[310px]"
+          />
+          <div className="info">
             <h2 className={"text-[24px] font-bold text-[white] mb-[80px]"}>
               Оптимизируйте процессы, повысьте эффективность и создавайте точные
               модели без ограничений.{" "}
             </h2>
-            <form className="w-full max-w-[600px]">
+            <div className="w-full max-w-[600px]">
               <div className="input-wrapper mb-[40px]">
                 <input
                   type="text"
                   className="input body-[10px]"
                   placeholder=" "
                   required
+                  autocomplete="off"
+                  {...register("fullName", {
+                    required: true,
+                  })}
                 />
                 <span className="input__label">ФИО *</span>
               </div>
               <div className="input-wrapper mb-[40px]">
-                <Select
-                  options={options}
-                  components={{ Input: CustomInput }}
-                  maxLength="4"
-                  styles={customStyles}
-                  theme={(theme) => ({
-                    ...theme,
-                    borderRadius: 0,
-                    colors: {
-                      ...theme.colors,
-                      text: "white",
-                      primary25: "#313132",
-                      primary: "#171717",
-                    },
-                  })}
+                <Multiselect
+                  name={"position"}
+                  control={control}
+                  values={options}
                 />
               </div>
               <div className="flex items-center gap-[8px] mb-[40px]">
                 <div className="min-w-[133px] ">
-                  <Select
-                    options={optionsС}
-                    components={{ Input: CustomInput }}
-                    maxLength="4"
-                    styles={customStyles}
-                    theme={(theme) => ({
-                      ...theme,
-                      borderRadius: 0,
-                      colors: {
-                        ...theme.colors,
-                        text: "white",
-                        primary25: "#313132",
-                        primary: "#171717",
-                      },
-                    })}
+                  <Multiselect
+                    name={"numberCode"}
+                    control={control}
+                    values={optionsNumber}
                   />
                 </div>
                 <div className="w-full">
                   <div className="input-wrapper">
-                    <input
-                      type="text"
+                    <InputMask
+                      mask="+996(999)-99-99-99"
+                      maskChar=" "
                       className="input body-[10px]"
                       placeholder=" "
                       required
+                      {...register("phone", {
+                        required: true,
+                      })}
                     />
                     <span className="input__label"></span>
                   </div>
                 </div>
-        
               </div>
               <div className="input-wrapper mb-[40px]">
-                  <input
-                    type="text"
-                    className="input body-[10px]"
-                    placeholder=" "
-                    required
-                  />
-                  <span className="input__label">Название компании</span>
-                </div>
-                <div className="input-wrapper">
-                  <input
-                    type="email"
-                    className="input body-[10px]"
-                    placeholder=" "
-                    required
-                  />
-                  <span className="input__label">Email адрес</span>
-                </div>
-            </form>
+                <input
+                  type="text"
+                  className="input body-[10px]"
+                  placeholder=" "
+                  required
+                  autocomplete="off"
+                  {...register("companyName", {
+                    required: true,
+                  })}
+                />
+                <span className="input__label">Название компании</span>
+              </div>
+              <div className="input-wrapper">
+                <input
+                  type="email"
+                  className="input body-[10px]"
+                  placeholder=" "
+                  required
+                  autocomplete="off"
+                  {...register("email", {
+                    required: true,
+                  })}
+                />
+                <span className="input__label">Email адрес</span>
+              </div>
+              <p className="error-text mb-1r">{errors.email?.message}</p>
+            </div>
           </div>
         </div>
-        <div className="rounded-b-[16px] flex justify-between px-[80px] py-[20px] bg-[#418DFF] max-[600px]:px-[16px]">
-       <h5 className="text-[48px] font-bold text-white max-[1200px]:text-[32px] max-[600px]:text-[24px]"> ПОЛУЧИТЬ ЭКСПЕРТНУЮ КОНСУЛЬТАЦИЮ </h5>
-        <Image src={ArrowRight} alt="arrow" />
-        </div>
-      </div>
+        <button className="cursor-pointer rounded-b-[16px] flex justify-between px-[80px] py-[20px] bg-[#418DFF] max-[600px]:px-[16px]">
+          <h5 className="text-[48px] font-bold text-white max-[1200px]:text-[32px] max-[600px]:text-[24px]">
+            ПОЛУЧИТЬ ЭКСПЕРТНУЮ КОНСУЛЬТАЦИЮ{" "}
+          </h5>
+          <Image src={ArrowRight} alt="arrow" />
+        </button>
+      </form>
     </div>
   );
 };

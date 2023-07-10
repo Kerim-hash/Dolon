@@ -1,12 +1,17 @@
 import { motion } from "framer-motion";
 
 import { useRef, useEffect } from "react";
-import { fadeIn, slideIn, staggerContainer, textVariant } from "../utils/motion";
+import {
+  fadeIn,
+  slideIn,
+  staggerContainer,
+  textVariant,
+} from "../utils/motion";
 import styles from "../styles";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Image from "next/image";
-import { HeroImg, HeroImgLg } from "@/assets";
+import { HeroImg, HeroImgLg, HeroImgSecond } from "@/assets";
 
 const Hero = () => {
   const sectionRef = useRef(null);
@@ -62,7 +67,7 @@ const Hero = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.25 }}
-          className={`${styles.innerWidth} pt-[80px] mx-auto flex flex-col`}
+          className={`${styles.innerWidth} pt-[80px] mx-auto flex flex-col max-[600px]:pt-[30px]`}
         >
           <div className="flex justify-center items-center flex-col relative z-10">
             <motion.h1
@@ -87,9 +92,9 @@ const Hero = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: false, amount: 0.55 }}
-              className="scroll-section flex justify-between items-center"
+              className="scroll-section flex justify-between items-center max-[600px]:flex-col max-[600px]:h-[95vh]"
             >
-              <div className={`${styles.info}`}>
+              <div className={`${styles.info} max-[600px]:mb-[30px]`}>
                 <motion.h6
                   className={styles.infoTitle}
                   variants={textVariant(0.1)}
@@ -106,80 +111,77 @@ const Hero = () => {
                     горнодобывающей промышленности для квалифицированных
                     специалистов{" "}
                   </p>
-                  <button className={styles.button}>
+                  <a href="#Contacts" className={styles.button}>
                     Получить экспертную консультацию
-                  </button>
+                  </a>
                 </motion.div>
               </div>
-              <motion.div variants={fadeIn('left', 'tween', 0.3, 2)}>
+              <motion.div variants={fadeIn("left", "tween", 0.1, 1)}>
                 <Image src={HeroImgLg} alt="Hero Image" />
-               </motion.div>
+              </motion.div>
             </motion.div>
             <motion.div
               variants={staggerContainer}
               initial="hidden"
               whileInView="show"
               viewport={{ once: false, amount: 0.55 }}
-              className="scroll-section flex justify-between items-center"
+              className="scroll-section flex justify-between items-center max-[600px]:flex-col  max-[600px]:h-[95vh]"
             >
-              <div className={`${styles.info}`}>
+              <div className={`${styles.info} max-[600px]:mb-[30px]`}>
                 <motion.h6
                   className={styles.infoTitle}
                   variants={textVariant(0.1)}
                 >
-                  Dolon позволяет загружать, обрабатывать и анализировать
-                  геологические данные в реальном времени прямо из веб-браузера
+                  С системой «Долон» 4-5 часов работы специалиста сокращается до
+                  рекордных 30 минут.
                 </motion.h6>
                 <motion.div variants={textVariant(0.2)}>
                   <p className={styles.infoDesc}>
-                    Открытие новых возможностей, повышение эффективности и
-                    увелечение скорости обработки данных - все это становится
-                    реальностью с OpenDolon. Первое в мире программное
-                    обеспечение, которое открывает двери в будущее
-                    горнодобывающей промышленности для квалифицированных
-                    специалистов{" "}
+                    "Долон" обеспечивает высокую точность привязки результатов
+                    аналитики к соответствующим данным, исключая возможность
+                    ошибок и искажений информации. Сократив количество времени
+                    для выполнения этой задачи, вы освободите его для других
+                    важных задач, повышая общую производительность и
+                    эффективность работы на руднике.
                   </p>
-                  <button className={styles.button}>
+                  <a href="#Contacts" className={styles.button}>
                     Получить экспертную консультацию
-                  </button>
+                  </a>
                 </motion.div>
               </div>
-              <motion.div variants={fadeIn('left', 'tween', 0.2, 2)}>
+              <motion.div variants={fadeIn("left", "tween", 0.2, 2)}>
                 <Image src={HeroImgLg} alt="Hero Image" />
-               </motion.div>
+              </motion.div>
             </motion.div>
             <motion.div
               variants={staggerContainer}
               initial="hidden"
               whileInView="show"
               viewport={{ once: false, amount: 0.55 }}
-              className="scroll-section flex justify-between items-center"
+              className="scroll-section flex justify-between items-center max-[600px]:flex-col max-[600px]:h-[95vh]"
             >
-              <div className={`${styles.info}`}>
+              <div className={`${styles.info} max-[600px]:mb-[30px]`}>
                 <motion.h6
                   className={styles.infoTitle}
                   variants={textVariant(0.1)}
                 >
-                  Dolon позволяет загружать, обрабатывать и анализировать
-                  геологические данные в реальном времени прямо из веб-браузера
+                  С "Долон" успешный полевой сезон без стресса и проблем.
                 </motion.h6>
                 <motion.div variants={textVariant(0.2)}>
                   <p className={styles.infoDesc}>
-                    Открытие новых возможностей, повышение эффективности и
-                    увелечение скорости обработки данных - все это становится
-                    реальностью с OpenDolon. Первое в мире программное
-                    обеспечение, которое открывает двери в будущее
-                    горнодобывающей промышленности для квалифицированных
-                    специалистов{" "}
+                    Система "Долон" надежный помощник в сборе и систематизации
+                    данных геологоразведочных работ. Теперь главный геолог может
+                    контролировать весь процесс сбора данных дистанционно, без
+                    необходимости быть на месте.
                   </p>
-                  <button className={styles.button}>
+                  <a href="#Contacts" className={styles.button}>
                     Получить экспертную консультацию
-                  </button>
+                  </a>
                 </motion.div>
               </div>
-              <motion.div variants={fadeIn('left', 'tween', 0.2, 2)}>
-                <Image src={HeroImgLg} alt="Hero Image" />
-               </motion.div>
+              <motion.div variants={fadeIn("left", "tween", 0.2, 2)}>
+                <Image src={HeroImgSecond} alt="Hero Image" />
+              </motion.div>
             </motion.div>
           </div>
           <div className="progress-bar">

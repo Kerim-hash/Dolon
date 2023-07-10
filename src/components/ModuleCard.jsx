@@ -6,8 +6,8 @@ import { fadeIn } from "@/utils/motion";
 const ModuleCard = ({ img, title, desc, index }) => {
   return (
     <motion.div
-      variants={fadeIn("up", "spring", index * 0.2, 1)}
-      className="2xl:max-w-[538px] max-[1440px]:max-w-[380px] max-[1200px]:min-w-[380px] max-[600px]:max-w-[inherit] max-[600px]:min-w-[auto] max-[1920px]:min-h-[528px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+      variants={fadeIn("left", "spring", index * 0.2, 1)}
+      className="2xl:max-w-[538px] max-[1440px]:max-w-[380px] max-[1200px]:min-w-[380px] max-[600px]:max-w-[inherit] max-[600px]:min-w-[auto] max-[1920px]:min-h-[528px] max-[600px]:min-h-[328px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
     >
       <a href="#">
         <Image
@@ -16,7 +16,7 @@ const ModuleCard = ({ img, title, desc, index }) => {
           alt="module"
         />
       </a>
-      <div className="p-5 max-[600px]:p-0">
+      <div className="p-5 max-[600px]:p-[5px]">
         <a href="#">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {title}

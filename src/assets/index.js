@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import HeroImg from "./heroImg.png";
+import HeroImgSecond from "./heroImg-second.png";
 import HeroImgLg from "./heroImgLg.png";
 import leftArrow from "./left-arrow.svg";
 import rightArrow from "./right-arrow.svg";
@@ -7,7 +8,6 @@ import advantages1 from './advantages1.jpg';
 import advantages2 from './advantages2.jpg';
 import advantages3 from './advantages3.jpg';
 import advantages4 from './advantages4.jpg';
-
 import Module1 from './openAPK.jpg'
 import Module2 from './3Dmodule.jpg'
 import Module3 from './APKmodule.jpg'
@@ -22,6 +22,7 @@ import FooterAuthor from "./footer-author.png";
 import ArrowRight from "./arrow-right.svg"
 import menu from "./menu.svg";
 import close from "./close.svg";
+import lottieJson from "./lottieJson.json";
 
 export {
   logo,
@@ -46,5 +47,7 @@ export {
   Linkedin, 
   YouTube,
   FooterAuthor,
-  ArrowRight
+  ArrowRight,
+  lottieJson,
+  HeroImgSecond
 };

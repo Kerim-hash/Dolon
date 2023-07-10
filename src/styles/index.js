@@ -16,9 +16,9 @@ const styles = {
   
     // hero section
     heroHeading:
-        '2xl:max-w-[1280px] font-bold lg:text-[32px] md:text-[32px] sm:text-[32px] text-[24px] lg:leading-[130%]  leading-[64.4px] uppercase text-white text-center',
+        '2xl:max-w-[1280px] font-bold lg:text-[32px] md:text-[32px] sm:text-[32px] text-[18px] lg:leading-[130%]  leading-[34.4px] uppercase text-white text-center',
         subTitle:
-        'font-bold  lg:text-[56px] text-[24px] text-white text-center',
+        'font-bold  lg:text-[56px] text-[18px] text-white text-center',
     button: 'bg-blue-500 hover:bg-blue-600 text-white  py-2 px-4 rounded',
     info: 'max-w-[582px]',
     infoTitle: 'text-white lg:text-[18px] mb-[32px]',

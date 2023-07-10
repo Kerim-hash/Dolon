@@ -1,8 +1,10 @@
 import '../styles/globals.css';
 import "locomotive-scroll/src/locomotive-scroll.scss";
+import 'react-toastify/dist/ReactToastify.css';
 
 import GoogleAnalytics from "@bradgarropy/next-google-analytics"
 import Head from "next/head";
+import { ToastContainer } from 'react-toastify';
 
 const MyApp = ({ Component, pageProps }) => (
   <>
@@ -20,6 +22,7 @@ const MyApp = ({ Component, pageProps }) => (
     </Head>
 
     <GoogleAnalytics measurementId="G-93SP47C5KR" />
+    <ToastContainer />
     <Component {...pageProps} />
   </>
 );

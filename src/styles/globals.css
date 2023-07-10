@@ -27,8 +27,8 @@ body {
 
 @media (max-width: 1440px) {
   .container {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
@@ -281,6 +281,11 @@ input {
   position: relative;
 }
 
+@media (max-width: 600px) {
+  .scroll-section-inner{
+    width: 400vw;
+  }
+}
 .scroll-section {
   height: 70vh;
   width: 100vw;
@@ -316,4 +321,9 @@ input {
 
 .progress::-moz-progress-bar {
   background: #fff;
+}
+
+
+.Toastify__toast-container--top-right{
+top: 5em !important;
 }

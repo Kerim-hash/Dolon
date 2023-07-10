@@ -7,13 +7,13 @@ const Footer = () => {
     <div className="footer bg-[#171717]  text-white text-center">
       <div className="container">
         <div className="flex justify-center flex-col py-[80px]">
-          <p className=" text-[18px] mb-[16px]">Офисы</p>
-          <p className="text-[24px] mb-[24px]">
+          <p className="text-[18px] mb-[16px]">Офисы</p>
+          <p className="text-[24px] mb-[24px] max-[600px]:text-[22px]">
             Республика Казахстан, г. Алматы
             <br />
             ул. Тимирязева, 42, к. 15/1, оф. 7
           </p>
-          <p className="text-[24px] mb-[80px]">
+          <p className="text-[24px] mb-[80px] max-[600px]:text-[22px]">
             Кыргызская Республика, г. Бишкек
             <br />
             ул. Ахунбаева 165
@@ -26,7 +26,7 @@ const Footer = () => {
             </a>
           </p>
           <p>
-            <a className="text-[24px]" href="mailto:info@dolon.tech">
+            <a className="text-[24px] max-[600px]:text-[22px]" href="mailto:info@dolon.tech">
               info@dolon.tech
             </a>
           </p>
