@@ -15,10 +15,10 @@ const Navbar = () => {
 
   return (
     <nav className="fixed shadow-md w-full flex px-[24px] py-5 justify-between items-center navbar bg-white z-[9999]">
-      <div className="flex items-center">
+      <a href="#" className="flex items-center">
         <Image src={logo} alt="dolon" width={32} height={32} />
         <motion.h1 variants={textVariant(1.1)} className="text-black font-medium ml-1">Dolon</motion.h1>
-      </div>
+      </a>
 
       <ul className="list-none sm:flex hidden justify-end items-center flex-1">
         {navLinks.map((nav, index) => (
