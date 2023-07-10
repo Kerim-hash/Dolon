@@ -47,11 +47,11 @@ const Contact = () => {
   }, []);
 
   const options = [
-    { label: "Аналитик", value: 1 },
-    { label: "Геолог", value: 2 },
-    { label: "Маркшейдер", value: 3 },
-    { label: "Полевой геолог", value: 4 },
-    { label: "Назад", value: 5 },
+    { label: "Аналитик", value: 'Аналитик' },
+    { label: "Геолог", value: 'Геолог' },
+    { label: "Маркшейдер", value: 'Маркшейдер' },
+    { label: "Полевой геолог", value: 'Полевой геоло' },
+    { label: "Назад", value: '-' },
   ];
 console.log(countries)
   const optionsNumber = countries.map((country) => ({
@@ -76,6 +76,7 @@ console.log(countries)
     handleSubmit,
     control,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -93,6 +94,7 @@ console.log(countries)
         (result) => {
           console.log(result.text);
           console.log("message sent");
+          reset()
         },
         (error) => {
           console.log(error.text);
