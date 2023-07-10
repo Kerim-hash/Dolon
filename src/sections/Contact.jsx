@@ -129,7 +129,7 @@ console.log(countries)
                   className="input body-[10px]"
                   placeholder=" "
                   required
-                  autocomplete="off"
+                  autoComplete="off"
                   {...register("fullName", {
                     required: true,
                   })}
@@ -173,7 +173,7 @@ console.log(countries)
                   className="input body-[10px]"
                   placeholder=" "
                   required
-                  autocomplete="off"
+                  autoComplete="off"
                   {...register("companyName", {
                     required: true,
                   })}
@@ -186,7 +186,7 @@ console.log(countries)
                   className="input body-[10px]"
                   placeholder=" "
                   required
-                  autocomplete="off"
+                  autoComplete="off"
                   {...register("email", {
                     required: true,
                   })}
