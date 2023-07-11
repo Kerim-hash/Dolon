@@ -2,16 +2,37 @@ import { review1, review2, review3 } from "@/assets";
 import ReviewCard from "@/components/reviewCard";
 import React from "react";
 
-const Reviews = () => {
+const Reviews = ({t}) => {
   return (
     <div id={"Reviews"} className="container pt-[180px]">
       <h1 className="text-black font-bold text-[32px] text-center mb-[40px]">
-        ОТЗЫВЫ
+        {t("reviews:title")}
       </h1>
       <div className="flex items-center justify-between  max-[600px]:flex-col max-[1200px]:overflow-x-scroll max-[1450px]:gap-[30px]">
-        <ReviewCard img={review1} companyName="RCG" name="Юлия Спивакова." position="ГИС Геолог компании Resources Capital Group" review="«Каждый год у нас меняются подрядные организации на гео-сопровождении. Мы ознакамливаем их с Dolon, проводим мини обучения буквально час два, просто демонстрируем основные функции. Потому что у подрядных организаций только ввод информации и все. То есть они открывают необходимые таблицы и вводят туда информацию.»" />
-        <ReviewCard img={review2} companyName="Vertex Gold Company" name="Мирзат Усенов." position="Главный геолог" review="«В прошлом мы работали в разных программных обеспечениях, и по-разному выполняли функции необходимые для рудника, все это мы объединили в Dolon’е. Теперь мы можем выгружать данные с Dolon для подсчета запасов и построения композитных блоков с минимальным риском ошибок. В том числе мы можем сортировать пробы, вести качественный и количественный контроль над пробами. Изначально все это делалось в excel или в разных программах, при этом приходилось часто импортировать данные, часть данных могла теряться, возникали ошибки, много времени занимало ведение, практически ручного, подсчета, что являлось трудоемкой задачей. Dolon снял эту нагрузку и практически исключил человеческий фактор в них.»" />
-        <ReviewCard img={review3} companyName="ТОО «Корпорация Казахмыс»" name="Маевская Людмила Ивановна" position="Ведущий геолог камеральной группы геологоразведочной службы Геологического управления" review="«После внедрения Dolon в разы сократилось время на геологическую документацию керна, а особенно на построение геологической колонки. Колонка теперь отстраивается одновременно с описанием керна и разбивкой на пробы.»" />
+        <ReviewCard
+          img={review1}
+          companyName={t("reviews:card1-companyName")}
+          name={t("reviews:card1-name")}
+          position={t("reviews:card1-position")}
+          review={t("reviews:card1-review")}
+          t={t}
+        />
+        <ReviewCard
+          img={review2}
+          companyName={t("reviews:card2-companyName")}
+          name={t("reviews:card2-name")}
+          position={t("reviews:card2-position")}
+          review={t("reviews:card2-review")}
+          t={t}
+        />
+        <ReviewCard
+          img={review3}
+          companyName={t("reviews:card3-companyName")}
+          name={t("reviews:card3-name")}
+          position={t("reviews:card3-position")}
+          review={t("reviews:card3-review")}
+          t={t}
+        />
       </div>
     </div>
   );

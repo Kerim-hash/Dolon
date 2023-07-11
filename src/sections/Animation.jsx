@@ -3,12 +3,12 @@ import React from "react";
 import Lottie from "react-lottie-player";
 const Animation = () => {
   return (
-    <div  className="flex justify-center max-[600px]:max-h-[250px]">
+    <div  className="animation" >
       <Lottie
         loop
         animationData={lottieJson}
         play
-        style={{ width: 750, height: 450 }}
+        style={{ width: 950, height: 550 }}
       />
     </div>
   );

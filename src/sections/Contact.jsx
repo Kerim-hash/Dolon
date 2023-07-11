@@ -2,14 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import * as yup from "yup";
 import Image from "next/image";
 import { ArrowRight, laptop } from "../assets/index";
-import Select, { components } from "react-select";
-import InputMask from "react-input-mask";
+import { components } from "react-select";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Multiselect from "@/components/MultiSelect";
-import { customStyles } from "@/utils/custumStyles";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import emailjs from "@emailjs/browser";
+import PhoneInput from "react-phone-input-2";
 // validation
 const Form = yup
   .object({
@@ -31,46 +30,16 @@ const CustomInput = (props) => {
   return <components.Input {...inputProps} />;
 };
 
-const Contact = () => {
-  const [countries, setCountries] = useState([]);
-
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((response) => response.json())
-      .then((data) => {
-        // Обработка полученных данных
-        setCountries(data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+const Contact = ({ t }) => {
 
   const options = [
-    { label: "Аналитик", value: 'Аналитик' },
-    { label: "Геолог", value: 'Геолог' },
-    { label: "Маркшейдер", value: 'Маркшейдер' },
-    { label: "Полевой геолог", value: 'Полевой геоло' },
-    { label: "Назад", value: '-' },
+    { label: t("contact:post1"), value: t("contact:post1") },
+    { label: t("contact:post2"), value: t("contact:post2") },
+    { label: t("contact:post3"), value: t("contact:post3") },
+    { label: t("contact:post4"), value: t("contact:post4") },
+    { label: t("contact:post5"), value: "-" },
   ];
-console.log(countries)
-  const optionsNumber = countries.map((country) => ({
-    value: country.idd.root,
-    label: (
-      <div className="flex items-center">
-        <Image
-          src={country.flags.svg}
-          alt={"flag"}
-          className="w-4 h-auto mr-2"
-          width={21}
-          height={15}
-        />
-        <span>{`(${country.idd.root}${country.idd.suffixes?.join(
-          `,${country.idd.root}`
-        )})`}</span>
-      </div>
-    ),
-  }));
+
   const {
     register,
     handleSubmit,
@@ -92,16 +61,13 @@ console.log(countries)
       )
       .then(
         (result) => {
-          console.log(result.text);
-          console.log("message sent");
-          reset()
+          reset();
         },
         (error) => {
           console.log(error.text);
         }
       );
   };
-  console.log(watch());
   return (
     <div id={"Contacts"} className="container pt-[180px] pb-[180px]">
       <form
@@ -119,8 +85,7 @@ console.log(countries)
           />
           <div className="info">
             <h2 className={"text-[24px] font-bold text-[white] mb-[80px]"}>
-              Оптимизируйте процессы, повысьте эффективность и создавайте точные
-              модели без ограничений.{" "}
+              {t("contact:title")}
             </h2>
             <div className="w-full max-w-[600px]">
               <div className="input-wrapper mb-[40px]">
@@ -134,38 +99,35 @@ console.log(countries)
                     required: true,
                   })}
                 />
-                <span className="input__label">ФИО *</span>
+                <span className="input__label">{t("contact:fullName")}</span>
               </div>
               <div className="input-wrapper mb-[40px]">
                 <Multiselect
+                 label={t("contact:post")}
                   name={"position"}
                   control={control}
                   values={options}
                 />
               </div>
               <div className="flex items-center gap-[8px] mb-[40px]">
-                <div className="min-w-[133px] ">
-                  <Multiselect
-                    name={"numberCode"}
-                    control={control}
-                    values={optionsNumber}
-                  />
-                </div>
-                <div className="w-full">
-                  <div className="input-wrapper">
-                    <InputMask
-                      mask="+996(999)-99-99-99"
-                      maskChar=" "
-                      className="input body-[10px]"
-                      placeholder=" "
-                      required
-                      {...register("phone", {
-                        required: true,
-                      })}
-                    />
-                    <span className="input__label"></span>
-                  </div>
-                </div>
+                <PhoneInput
+                  country={"us"}
+                  inputStyle={{
+                    color: "#fff",
+                    width: "100%",
+                    background: "transparent",
+                    padding: "22px 55px",
+                  }}
+                  dropdownStyle={{
+                    height: "450px",
+                    width: "210px",
+                    backgroundColor: "#171717",
+                    color: "#fff",
+                    borderRadius: "8px",
+                  }}
+                  buttonStyle={{ backgroundColor: "#171717" }}
+              
+                />
               </div>
               <div className="input-wrapper mb-[40px]">
                 <input
@@ -178,7 +140,7 @@ console.log(countries)
                     required: true,
                   })}
                 />
-                <span className="input__label">Название компании</span>
+                <span className="input__label">{t("contact:companyName")}</span>
               </div>
               <div className="input-wrapper">
                 <input
@@ -191,7 +153,9 @@ console.log(countries)
                     required: true,
                   })}
                 />
-                <span className="input__label">Email адрес</span>
+                <span className="input__label">
+                  {t("contact:EmailAddress")}
+                </span>
               </div>
               <p className="error-text mb-1r">{errors.email?.message}</p>
             </div>
@@ -199,7 +163,7 @@ console.log(countries)
         </div>
         <button className="cursor-pointer rounded-b-[16px] flex justify-between px-[80px] py-[20px] bg-[#418DFF] max-[600px]:px-[16px]">
           <h5 className="text-[48px] font-bold text-white max-[1200px]:text-[32px] max-[600px]:text-[24px]">
-            ПОЛУЧИТЬ ЭКСПЕРТНУЮ КОНСУЛЬТАЦИЮ{" "}
+          {t("common:link")}
           </h5>
           <Image src={ArrowRight} alt="arrow" />
         </button>

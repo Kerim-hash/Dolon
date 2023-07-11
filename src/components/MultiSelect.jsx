@@ -3,7 +3,7 @@ import Select from "react-select";
 import { Controller } from "react-hook-form";
 import { customStyles } from "@/utils/custumStyles";
 
-const Multiselect = ({ name, values = [], control, isDisabled = false }) => {
+const Multiselect = ({ name, values = [], control, isDisabled = false, label}) => {
   const options = values
   return (
     <div>
@@ -14,7 +14,7 @@ const Multiselect = ({ name, values = [], control, isDisabled = false }) => {
           return (
             <Select
               options={options}
-              placeholder={"Choose..."}
+              placeholder={label}
               className="basic-single"
               classNamePrefix="select"
               isClearable={false}

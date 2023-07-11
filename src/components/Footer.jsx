@@ -2,31 +2,30 @@ import { FooterAuthor, Linkedin, YouTube } from "@/assets";
 import Image from "next/image";
 import React from "react";
 
-const Footer = () => {
+const Footer = ({ t }) => {
   return (
     <div className="footer bg-[#171717]  text-white text-center">
       <div className="container">
         <div className="flex justify-center flex-col py-[80px]">
-          <p className="text-[18px] mb-[16px]">Офисы</p>
-          <p className="text-[24px] mb-[24px] max-[600px]:text-[22px]">
-            Республика Казахстан, г. Алматы
-            <br />
-            ул. Тимирязева, 42, к. 15/1, оф. 7
+          <p className="text-[18px] mb-[16px]">{t("footer:Offices")}</p>
+          <p className="text-[24px] max-w-[430px] m-[auto] mb-[24px] max-[600px]:text-[22px]">
+            {t("footer:address1")}
           </p>
-          <p className="text-[24px] mb-[80px] max-[600px]:text-[22px]">
-            Кыргызская Республика, г. Бишкек
-            <br />
-            ул. Ахунбаева 165
+          <p className="text-[24px] max-w-[430px] m-[auto] mb-[80px] max-[600px]:text-[22px]">
+            {t("footer:address2")}
           </p>
 
-          <p className="text-[#F5F5F7] mb-[16px]">По вопросам закупки</p>
+          <p className="text-[#F5F5F7] mb-[16px]">{t("footer:issues")}</p>
           <p>
             <a className="text-[24px]" href="tel:+77055913880">
               +7 705 591 3880
             </a>
           </p>
           <p>
-            <a className="text-[24px] max-[600px]:text-[22px]" href="mailto:info@dolon.tech">
+            <a
+              className="text-[24px] max-[600px]:text-[22px]"
+              href="mailto:info@dolon.tech"
+            >
               info@dolon.tech
             </a>
           </p>
@@ -62,7 +61,7 @@ const Footer = () => {
               />
             </a>
           </div>
-          <p className="font-Montserrat font-[14px] font-medium">
+          <p className="font-Montserrat text-[14px] font-medium">
             © Dolon 2023
           </p>
 
